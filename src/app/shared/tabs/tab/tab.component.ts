@@ -13,7 +13,7 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   @HostBinding('class.active') private active: boolean;
   @Input() label: string;
 
-  index: number;
+  private index: number;
 
   private destroy$ = new Subject();
 
