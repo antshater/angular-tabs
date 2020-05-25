@@ -2,8 +2,17 @@
   <h1>Tabs</h1>
 
   <app-tabs-group>
-    <app-tab label="Tab 1" >Tab 1 content</app-tab>
-    <app-tab label="Tab 2" >Tab 2 content</app-tab>
+    <app-tab >
+      <strong *appTabLabel >Tab 1</strong>
+      <ng-container *appTabContent >
+        Tab 1 content <app-test></app-test>
+      </ng-container>
+    </app-tab>
+    <app-tab label="Tab 2" >
+      <ng-container *appTabContent >
+        Tab 2 content <app-test></app-test>
+      </ng-container>
+    </app-tab>
     <app-tab label="Tab 3" >Tab 3 content</app-tab>
   </app-tabs-group>
 

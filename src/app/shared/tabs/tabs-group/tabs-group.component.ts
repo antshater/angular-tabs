@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TabsService } from '../tabs.service';
 import { Observable } from 'rxjs';
+import { TabLabel } from '../tab-label';
 
 @Component({
   selector: 'app-tabs-group',
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class TabsGroupComponent implements OnInit {
 
-  labels$: Observable<string[]>;
+  labels$: Observable<TabLabel[]>;
   activeIndex$: Observable<number>;
 
   constructor(private tabsService: TabsService) { }

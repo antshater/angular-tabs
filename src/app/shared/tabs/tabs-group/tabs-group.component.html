@@ -4,7 +4,12 @@
     (click)="onClickTab(index)"
     [class.active]="(activeIndex$ | async) === index"
   >
-    {{ label }}
+    <ng-container *ngIf="label.stringValue" >
+      {{ label.stringValue }}
+    </ng-container>
+    <ng-container *ngIf="label.templateRef" >
+      <ng-container *ngTemplateOutlet="label.templateRef" ></ng-container>
+    </ng-container>
   </div>
 </div>
 <div class="content">

@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { TabLabel } from './tab-label';
 
 @Injectable()
 export class TabsService {
 
   private index = 0;
-  private labels$ = new BehaviorSubject<string[]>([]);
+  private labels$ = new BehaviorSubject<TabLabel[]>([]);
   private activeIndex$ = new BehaviorSubject<number>(0);
 
   constructor() { }
@@ -14,13 +15,18 @@ export class TabsService {
     return this.index ++;
   }
 
-  setLabel(index: number, label: string): void {
+  setLabel(index: number, label: string | TemplateRef<HTMLElement>): void {
     const labels = this.labels$.value;
-    labels[index] = label;
+    if (label instanceof TemplateRef) {
+      labels[index] = { templateRef: label };
+    } else {
+      labels[index] = { stringValue: label };
+    }
+
     this.labels$.next(labels);
   }
 
-  getLabels(): Observable<string[]> {
+  getLabels(): Observable<TabLabel[]> {
     return this.labels$.asObservable();
   }
 
